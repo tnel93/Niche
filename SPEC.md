@@ -20,13 +20,14 @@
 | Tailwind + CSS variables | `tailwind.config.ts`, `src/app/globals.css` |
 | Env template | `.env.example` |
 | Prototype porting notes | [`docs/PROTOTYPE.md`](docs/PROTOTYPE.md) |
+| **Part 5 — Business plan (full)** | [`docs/BUSINESS-PLAN.md`](docs/BUSINESS-PLAN.md) — revenue, GTM, ops, launch, metrics, risks |
 
-### Pricing models: reconcile before build
+### Monetization (canonical for this repo)
 
-- **Part 1 (technical / marketplace)** describes ~**15% platform commission** on sessions, Stripe Connect splits, provider-paid Checkr, etc.
-- **Part 5 (business plan)** describes **Niche Pass** ($19.99/mo) + **5% booking fee** on seekers, deferred Connect, manual payouts at MVP.
+- **Canonical GTM / MVP economics:** **[`docs/BUSINESS-PLAN.md`](docs/BUSINESS-PLAN.md)** — **Niche Pass** ($19.99/mo), **5%** booking fee on the seeker (provider keeps listed rate), manual provider payouts until Stripe Connect, deferred Persona/Checkr at low volume.
+- **Alternate model** in Part 1 (technical spec / long-term marketplace): ~**15%** platform take via Stripe Connect, etc. Treat that as a **scale-phase** option unless you explicitly switch.
 
-Pick **one** canonical monetization story for v1 and align `bookings` fee fields, Stripe flows, and copy. This repo’s schema uses `platform_fee_cents` / `provider_payout_cents` — map your chosen model to those columns.
+When implementing bookings and Stripe, map the **business-plan** model to schema fields: e.g. `rate_cents` = provider amount, `platform_fee_cents` = **5% of seeker total** (or seeker total − provider amount), `provider_payout_cents` = full provider rate at MVP.
 
 ---
 
@@ -52,7 +53,7 @@ Niche is an anonymous, consent-gated marketplace where people with fetishes find
 - **Geo:** PostGIS  
 - **ID:** Persona (inquiry id + flags only in DB — no ID images locally)  
 - **Providers:** Checkr (after reveal / internal policy)  
-- **Payments:** Stripe Connect (Part 1) *or* subscription + simple checkout (Part 5 MVP) — **choose**  
+- **Payments:** MVP per **BUSINESS-PLAN.md** — Stripe **subscription** (Niche Pass) + checkout with **5%** platform fee; Connect/manual payouts as documented there. Part 1 Connect + % take is optional at scale.  
 - **Email / SMS:** Resend, Twilio  
 - **Hosting:** Vercel + Supabase  
 
@@ -228,22 +229,10 @@ Single-file app: landing, `VerificationGate`, marketplace grid, provider profile
 
 ---
 
-## Part 5 — Complete business plan (summary)
+## Part 5 — Complete business plan
 
-**Revenue (Part 5 model):** Niche Pass **$19.99/mo** (unlocks messaging / ladder / booking); **5%** booking fee on seeker at checkout; providers keep listed rate; featured tier deferred.
-
-**MVP scope (Part 5):** Subscription paywall; manual ID review optional; defer Persona/Connect/Checkr until revenue thresholds; waitlist landing first.
-
-**Operations:** Daily support + verification glance; weekly payouts (manual until Connect), content, email; monthly metrics and SEO batch.
-
-**Launch sequence:** LLC/domain/email/Stripe/Supabase → waitlist → build core app → seed providers → soft launch → iterate.
-
-**Metrics:** Waitlist, signups, browse→subscribe, MRR, messages/day, ladder progression, bookings, churn, provider count.
-
-**Risks:** Stripe account, legal, thin supply, off-platform leakage, bad actors, conversion/churn — mitigations in full plan.
-
-**Key success factor:** First ~15 quality providers in-market before blasting demand.
+**Authoritative copy:** [`docs/BUSINESS-PLAN.md`](docs/BUSINESS-PLAN.md) (revenue streams, unit economics, MVP build order, brand/comms, provider & seeker acquisition, operations, launch checklist, metrics, milestones, risk register, success framing).
 
 ---
 
-*End of SPEC.md. Part 3 and Part 4 JSX are maintained as separate files under `docs/` for size and clarity.*
+*End of SPEC.md. Part 3 and Part 4 JSX live under `docs/`; Part 5 lives in `docs/BUSINESS-PLAN.md`.*

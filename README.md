@@ -2,7 +2,7 @@
 
 Anonymous, consent-gated marketplace for kink-aware professional services.
 
-**Product + engineering index:** [SPEC.md](./SPEC.md) (Parts 1–2 & 5; Part 3 JSX: [`docs/PROTOTYPE.jsx`](docs/PROTOTYPE.jsx); Part 4: [`docs/DESIGN-SYSTEM.jsx`](docs/DESIGN-SYSTEM.jsx) and `/design-system`).
+**Product + engineering index:** [SPEC.md](./SPEC.md) (Parts 1–4; **business plan:** [`docs/BUSINESS-PLAN.md`](docs/BUSINESS-PLAN.md); Part 3 JSX: [`docs/PROTOTYPE.jsx`](docs/PROTOTYPE.jsx); Part 4: [`docs/DESIGN-SYSTEM.jsx`](docs/DESIGN-SYSTEM.jsx) and `/design-system`).
 
 ## Design system
 
