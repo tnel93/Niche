@@ -510,6 +510,37 @@ function MeetRequestBtn() {
   );
 }
 
+/** Gradient CTA — same visual weight as meet request; 🔓 variant from the base design spec. */
+function RevealBtn() {
+  const [hov, setHov] = useState(false);
+  return (
+    <button
+      type="button"
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        padding: "16px 32px",
+        borderRadius: T.radius.lg,
+        fontSize: "16px",
+        fontWeight: T.fontWeight.heavy,
+        fontFamily: T.font.body,
+        cursor: "pointer",
+        border: "none",
+        background: hov
+          ? `linear-gradient(135deg, ${T.color.accentHover}, ${T.color.accentPressed})`
+          : `linear-gradient(135deg, ${T.color.accent}, ${T.color.accentHover})`,
+        color: "#fff",
+        letterSpacing: T.letterSpacing.wide,
+        boxShadow: hov ? "0 8px 32px rgba(232,115,74,0.35)" : T.shadow.glow,
+        transition: T.transition.base,
+        transform: hov ? "translateY(-1px)" : "none",
+      }}
+    >
+      🔓 I&apos;d like to meet in person
+    </button>
+  );
+}
+
 function VerifiedBadge({ type = "id" }: { type?: "id" | "bg" | "consent" }) {
   const config = {
     id: { emoji: "✅", label: "ID Verified", color: T.color.green, bg: T.color.greenSoft },
@@ -1057,7 +1088,7 @@ export default function DesignSystemShowcase() {
 
         <Section
           title="Anonymous Avatars"
-          description="Users never show real photos before reveal. Instead, each user gets a generated gradient avatar with their alias initials. 8 gradient pairs rotate deterministically based on user ID."
+          description="Stage 1 (anonymous): gradient avatar + initials only — no real photos. After mutual photo consent (Stage 2), voluntary exchanged photos may appear; verified selfie and ID-linked imagery only after Stage 4. Eight gradient pairs rotate deterministically from user id."
         >
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "flex-end" }}>
             {T.color.avatarGradients.map(([c1, c2], i) => (
@@ -1105,6 +1136,9 @@ export default function DesignSystemShowcase() {
           </ComponentDemo>
           <ComponentDemo label="Trust ladder — Stage 3 (agree to meet)">
             <MeetRequestBtn />
+          </ComponentDemo>
+          <ComponentDemo label="Alternate meet CTA (🔓 — same treatment as spec hero button)">
+            <RevealBtn />
           </ComponentDemo>
         </Section>
 
@@ -1236,7 +1270,7 @@ export default function DesignSystemShowcase() {
 
         <Section
           title="Messaging"
-          description="Anonymous conversation UI. Own messages in terracotta, received in cream-alt. System messages centered with icon."
+          description="Anonymous conversation UI. Own messages in terracotta, received in cream-alt. System messages centered, pill-shaped, bg-warm — use icons for trust-ladder events (🔒 start, 📸 photos, 🤝 meet, 🔐 verify, 📅 booking)."
         >
           <div
             style={{
@@ -1268,6 +1302,12 @@ export default function DesignSystemShowcase() {
               <SystemMsg
                 text="🤝 SteadyHands_303 wants to meet — agree on session details next"
                 icon="🤝"
+              />
+            </div>
+            <div style={{ textAlign: "center", marginTop: "8px" }}>
+              <SystemMsg
+                text="SteadyHands_303 would like to meet in person"
+                icon="🔓"
               />
             </div>
           </div>
