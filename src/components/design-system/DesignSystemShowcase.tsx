@@ -7,6 +7,7 @@
  */
 
 import { useState } from "react";
+import { TRUST_LADDER_UI_STAGES } from "@/lib/connection-stages";
 import { T } from "./tokens";
 
 function Section({
@@ -453,7 +454,33 @@ function CategoryPill({
   );
 }
 
-function RevealBtn() {
+function PhotoExchangeBtn() {
+  const [hov, setHov] = useState(false);
+  return (
+    <button
+      type="button"
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        padding: "12px 22px",
+        borderRadius: T.radius.lg,
+        fontSize: T.fontSize.base,
+        fontWeight: T.fontWeight.bold,
+        fontFamily: T.font.body,
+        cursor: "pointer",
+        border: `1.5px solid ${T.color.border}`,
+        background: hov ? T.color.surfaceHover : "transparent",
+        color: T.color.textSoft,
+        letterSpacing: T.letterSpacing.wide,
+        transition: T.transition.base,
+      }}
+    >
+      📸 Exchange photos
+    </button>
+  );
+}
+
+function MeetRequestBtn() {
   const [hov, setHov] = useState(false);
   return (
     <button
@@ -478,7 +505,7 @@ function RevealBtn() {
         transform: hov ? "translateY(-1px)" : "none",
       }}
     >
-      🔓 I&apos;d like to meet in person
+      🤝 I&apos;d like to meet in person
     </button>
   );
 }
@@ -1073,8 +1100,11 @@ export default function DesignSystemShowcase() {
             <Btn size="lg">Large</Btn>
             <Btn size="xl">Extra Large</Btn>
           </ComponentDemo>
-          <ComponentDemo label="Special — Reveal CTA">
-            <RevealBtn />
+          <ComponentDemo label="Trust ladder — Stage 2 (photo exchange)">
+            <PhotoExchangeBtn />
+          </ComponentDemo>
+          <ComponentDemo label="Trust ladder — Stage 3 (agree to meet)">
+            <MeetRequestBtn />
           </ComponentDemo>
         </Section>
 
@@ -1150,6 +1180,61 @@ export default function DesignSystemShowcase() {
         </Section>
 
         <Section
+          title="Connection trust ladder"
+          description="Connections move through mutual-consent stages. /connections shows progress as 🔒 → 📸 → 🤝 → 🔐 → 📅. Address and phone only after photos, signed consent, and ID verification (see product spec)."
+        >
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "8px",
+              alignItems: "center",
+            }}
+          >
+            {TRUST_LADDER_UI_STAGES.map(({ stage, emoji, label }, i) => (
+              <span
+                key={stage}
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+              >
+                <span
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    padding: "8px 14px",
+                    borderRadius: T.radius.md,
+                    fontSize: T.fontSize.sm,
+                    fontWeight: T.fontWeight.semi,
+                    background: i <= 2 ? T.color.accentSoft : T.color.bgAlt,
+                    border: `1px solid ${i <= 2 ? `${T.color.accent}30` : T.color.borderLight}`,
+                    color: i <= 2 ? T.color.accent : T.color.textMuted,
+                  }}
+                >
+                  {emoji} {label}
+                </span>
+                {i < TRUST_LADDER_UI_STAGES.length - 1 ? (
+                  <span style={{ color: T.color.textMuted, fontSize: T.fontSize.sm }}>→</span>
+                ) : null}
+              </span>
+            ))}
+          </div>
+          <p
+            style={{
+              marginTop: "16px",
+              marginBottom: 0,
+              fontSize: T.fontSize.sm,
+              color: T.color.textSoft,
+              lineHeight: T.lineHeight.relaxed,
+              maxWidth: "640px",
+            }}
+          >
+            <strong style={{ color: T.color.text }}>Core rule:</strong> no address or contact info
+            until (1) optional mutual photo exchange, (2) both sign the consent form, and (3) both
+            pass ID verification. Booking unlocks only at Stage 5.
+          </p>
+        </Section>
+
+        <Section
           title="Messaging"
           description="Anonymous conversation UI. Own messages in terracotta, received in cream-alt. System messages centered with icon."
         >
@@ -1180,17 +1265,23 @@ export default function DesignSystemShowcase() {
               isOwn
             />
             <div style={{ textAlign: "center", marginTop: "12px" }}>
-              <SystemMsg text="🔓 SteadyHands_303 would like to meet in person" icon="🔓" />
+              <SystemMsg
+                text="🤝 SteadyHands_303 wants to meet — agree on session details next"
+                icon="🤝"
+              />
             </div>
           </div>
         </Section>
 
-        <Section title="Consent Flow Steps" description="Visual progress through the session consent process.">
+        <Section
+          title="Consent form (Stage 3)"
+          description="After both parties agree to meet, they define activities, hard limits, and safe words — then both sign digitally before ID verification (Stage 4)."
+        >
           <div style={{ maxWidth: "380px", display: "grid", gap: "8px" }}>
-            <ConsentStep number="1" title="Free 15-min consultation" done />
-            <ConsentStep number="2" title="Both sign consent form" done />
-            <ConsentStep number="3" title="Safe word protocol confirmed" done={false} />
-            <ConsentStep number="4" title="Session & post-check-in" done={false} />
+            <ConsentStep number="1" title="Agreed activities (tags)" done />
+            <ConsentStep number="2" title="Hard limits marked" done />
+            <ConsentStep number="3" title="Safe word protocol (e.g. traffic light)" done />
+            <ConsentStep number="4" title="Both digital signatures" done={false} />
           </div>
         </Section>
 
@@ -1338,7 +1429,8 @@ export default function DesignSystemShowcase() {
           <div style={{ display: "grid", gap: "10px", maxWidth: "620px" }}>
             {[
               "Never use pure black (#000). Darkest text is espresso #2D2016.",
-              "Never show real photos before reveal. Gradient avatars + initials only.",
+              "Never show real names, verified selfies, addresses, or phones until the connection stage allows it (photos → signed consent → ID verify → booking).",
+              "Gradient avatars + alias in anonymous stages; Stage 2+ may show voluntary exchanged photos per mutual consent.",
               "Border radius minimum 8px. Nothing sharp. Warmth is the goal.",
               "Shadows use warm brown (rgba(45,32,22,x)), never cool gray or pure black.",
               "Accent terracotta (#E8734A) is for CTAs, brand, and active states ONLY. Don't overuse.",
