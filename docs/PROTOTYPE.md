@@ -1,12 +1,11 @@
 # Niche prototype (Part 3)
 
-The **full working prototype** from the master build spec is a large single-file JSX app (landing → onboarding → marketplace → profile → connection + trust ladder → bookings → provider dashboard).
+The **full working prototype** from the build spec lives in **[`PROTOTYPE.jsx`](./PROTOTYPE.jsx)** — landing, onboarding gate, marketplace, provider profile, connection thread with trust ladder, connections list, bookings, and provider dashboard.
 
-**To add it here:**
+**To run it in Next.js:**
 
 1. Create `src/app/prototype/page.tsx` with `"use client"`.
-2. Paste the Part 3 `export default function App()` component from your SPEC.
-3. Replace inline `T.font` strings with CSS variables if you want font parity with `layout.tsx` (`var(--font-fraunces)`, etc.), or keep the spec’s `@import` in a `<style>` tag for a self-contained demo.
-4. Add a link from `/` or the nav: “Open prototype”.
+2. Copy the component tree from `docs/PROTOTYPE.jsx` (or dynamically import after renaming to `.tsx` and fixing types).
+3. Optionally align fonts with `layout.tsx` (`next/font`) instead of the file’s Google `@import` in `<style>`.
 
-Until ported, use **`/design-system`** for visual reference and **`/explore`** (when built) for production routes.
+Until ported, use **`/design-system`** for the token gallery and **`SPEC.md`** for product rules.
