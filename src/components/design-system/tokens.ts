@@ -1,4 +1,8 @@
-/** Living design spec — tokens mirror NICHE build spec. */
+/**
+ * NICHE — design tokens (living spec).
+ * Mirrors the complete design system: colors, type, space, radius, shadow,
+ * motion, breakpoints, and z-index scale.
+ */
 
 export const tokens = {
   color: {
@@ -125,6 +129,86 @@ export const tokens = {
     slow: "all 0.4s ease",
     spring: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
   },
+  breakpoint: {
+    sm: "640px",
+    md: "768px",
+    lg: "1024px",
+    xl: "1200px",
+  },
+  z: {
+    base: 1,
+    card: 10,
+    sticky: 50,
+    modal: 100,
+    toast: 150,
+    tooltip: 200,
+  },
 } as const;
 
 export const T = tokens;
+
+/** Paste into global CSS — documents canonical CSS variables (subset). */
+export const nicheCssVariablesSnippet = `
+:root {
+  --bg: #FFFBF7;
+  --bg-alt: #FFF5EC;
+  --bg-warm: #FEF0E4;
+  --bg-dark: #1A1410;
+  --surface: #FFFFFF;
+  --surface-hover: #FFF8F2;
+  --border: #F0E4D8;
+  --border-light: #F5EDE5;
+  --border-focus: #E8734A;
+  --text: #2D2016;
+  --text-soft: #6B5B4E;
+  --text-muted: #A89888;
+  --text-inverse: #FFFBF7;
+  --accent: #E8734A;
+  --accent-hover: #D4623B;
+  --accent-pressed: #C05530;
+  --accent-soft: rgba(232,115,74,0.10);
+  --accent-softer: rgba(232,115,74,0.05);
+  --accent-glow: rgba(232,115,74,0.20);
+  --green: #4CAF6E;
+  --green-soft: rgba(76,175,110,0.12);
+  --red: #E05252;
+  --red-soft: rgba(224,82,82,0.10);
+  --amber: #D4A24C;
+  --amber-soft: rgba(212,162,76,0.12);
+  --purple: #8B6CC1;
+  --purple-soft: rgba(139,108,193,0.10);
+  --teal: #3DAFA5;
+  --teal-soft: rgba(61,175,165,0.10);
+  --font-brand: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 100px;
+  --shadow-sm: 0 1px 3px rgba(45,32,22,0.04);
+  --shadow-md: 0 4px 12px rgba(45,32,22,0.06);
+  --shadow-lg: 0 8px 24px rgba(45,32,22,0.08);
+  --shadow-glow: 0 4px 16px rgba(232,115,74,0.25);
+  --shadow-card: 0 2px 12px rgba(45,32,22,0.04);
+}
+`.trim();
+
+/** Reference Tailwind extension — app uses tailwind.config.ts; this string is for docs/copy-paste. */
+export const nicheTailwindConfigSnippet = `
+// tailwind.config — extend theme with Niche tokens
+colors: {
+  cream: { DEFAULT: '#FFFBF7', alt: '#FFF5EC', warm: '#FEF0E4' },
+  espresso: { DEFAULT: '#2D2016', soft: '#6B5B4E', muted: '#A89888' },
+  terra: { DEFAULT: '#E8734A', hover: '#D4623B', pressed: '#C05530',
+            soft: 'rgba(232,115,74,0.10)', glow: 'rgba(232,115,74,0.20)' },
+  verified: { DEFAULT: '#4CAF6E', soft: 'rgba(76,175,110,0.12)' },
+  danger: { DEFAULT: '#E05252', soft: 'rgba(224,82,82,0.10)' },
+  gold: { DEFAULT: '#D4A24C', soft: 'rgba(212,162,76,0.12)' },
+  iris: { DEFAULT: '#8B6CC1', soft: 'rgba(139,108,193,0.10)' },
+  mint: { DEFAULT: '#3DAFA5', soft: 'rgba(61,175,165,0.10)' },
+  dark: '#1A1410',
+}
+`.trim();

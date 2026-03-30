@@ -1,5 +1,11 @@
 "use client";
 
+/**
+ * NICHE — complete design system & component library (living spec).
+ * Every token, component, pattern, and page layout reference is defined here
+ * as renderable code. Tokens: ./tokens.ts
+ */
+
 import { useState } from "react";
 import { T } from "./tokens";
 
@@ -353,6 +359,34 @@ function Avatar({
   );
 }
 
+function Card({
+  children,
+  hoverable = true,
+}: {
+  children: React.ReactNode;
+  hoverable?: boolean;
+}) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => hoverable && setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: T.color.surface,
+        borderRadius: T.radius.xl,
+        padding: "24px",
+        border: `1px solid ${hovered ? `${T.color.accent}40` : T.color.border}`,
+        boxShadow: hovered ? T.shadow.cardHover : T.shadow.card,
+        transition: T.transition.base,
+        transform: hovered ? "translateY(-3px)" : "none",
+        cursor: hoverable ? "pointer" : "default",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 function TagChip({
   label,
   active,
@@ -576,7 +610,7 @@ function ProviderCardDemo() {
             </span>
           </div>
           <div style={{ fontSize: T.fontSize.base, color: T.color.textMuted }}>
-            Barber · &quot;Patient &amp; precise&quot;
+            Barber · &ldquo;Patient & precise&rdquo;
           </div>
         </div>
         <div
@@ -770,7 +804,7 @@ export default function DesignSystemShowcase() {
           </span>
         </div>
         <div style={{ fontSize: T.fontSize.sm, color: T.color.textMuted }}>
-          Tokens, components &amp; patterns — reference for product UI
+          For Cursor agent reference — all tokens, components &amp; patterns
         </div>
       </div>
 
@@ -999,10 +1033,10 @@ export default function DesignSystemShowcase() {
           description="Users never show real photos before reveal. Instead, each user gets a generated gradient avatar with their alias initials. 8 gradient pairs rotate deterministically based on user ID."
         >
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "flex-end" }}>
-            {T.color.avatarGradients.map(([_, __], i) => (
+            {T.color.avatarGradients.map(([c1, c2], i) => (
               <Avatar
-                key={i}
-                initials={["SH", "MR", "JL", "DX", "RK", "KN", "MS", "AB"][i] ?? "?"}
+                key={`${c1}-${c2}`}
+                initials={["SH", "MR", "JL", "DX", "RK", "KN", "MS", "AB"][i]!}
                 size={56}
                 idx={i}
                 online={i % 3 === 0}
@@ -1087,6 +1121,25 @@ export default function DesignSystemShowcase() {
             <InputDemo label="Alias" placeholder="Choose your alias..." />
             <InputDemo label="Search" placeholder="🔍  Search providers, services, tags..." />
           </div>
+        </Section>
+
+        <Section
+          title="Card"
+          description="Default elevated surface: white background, xl radius, lift and accent border on hover."
+        >
+          <Card>
+            <p
+              style={{
+                margin: 0,
+                fontSize: T.fontSize.base,
+                color: T.color.textSoft,
+                lineHeight: T.lineHeight.relaxed,
+              }}
+            >
+              Generic card container for settings panels, modals, and stacked sections. Provider
+              cards use the same hover treatment with marketplace-specific layout.
+            </p>
+          </Card>
         </Section>
 
         <Section
@@ -1298,7 +1351,7 @@ export default function DesignSystemShowcase() {
               "Mobile-first. Cards stack single-column below 768px. Touch targets minimum 44px.",
             ].map((rule, i) => (
               <div
-                key={rule}
+                key={i}
                 style={{
                   display: "flex",
                   gap: "12px",
