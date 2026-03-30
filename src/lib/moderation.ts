@@ -6,7 +6,7 @@ const PII_PATTERNS: RegExp[] = [
   /(\+?1[-.\s]?)?\(?[2-9]\d{2}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g,
   /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g,
   /(?:^|\s)@[a-zA-Z0-9_]{2,30}(?:\s|$)/g,
-  /https?:\/\/[^\s]+/gi,
+  /https?:\/\/[^\s]+/g,
   /\b(?:ig|insta|instagram|twitter|snap|snapchat|tiktok|facebook|fb|linkedin|whatsapp|telegram|signal|discord)\b\s*[:=]?\s*[a-zA-Z0-9._-]+/gi,
   /\b(?:find|dm|message|text|call|reach|contact|hit)\s+(?:me|us)\s+(?:on|at|via)\b/gi,
   /\d{1,5}\s+(?:N|S|E|W|North|South|East|West|NE|NW|SE|SW)?\s*(?:[A-Z][a-z]+\s+){1,3}(?:St|Street|Ave|Avenue|Blvd|Boulevard|Dr|Drive|Ln|Lane|Ct|Court|Rd|Road|Way|Pl|Place)\b/gi,

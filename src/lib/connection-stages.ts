@@ -19,6 +19,21 @@ export const CONNECTION_STAGES = [
   "expired",
 ] as const;
 
+/** Spec name for the stage list (subset excludes terminal states in some docs). */
+export const STAGES = [
+  "anonymous",
+  "photos_requested",
+  "photos_shared",
+  "meet_requested",
+  "consent_pending",
+  "consent_signed",
+  "verification_pending",
+  "verified",
+  "booking_ready",
+  "booking_active",
+  "completed",
+] as const;
+
 export type ConnectionStage = (typeof CONNECTION_STAGES)[number];
 
 const VALID_TRANSITIONS: Record<ConnectionStage, ConnectionStage[]> = {
