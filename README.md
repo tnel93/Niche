@@ -2,6 +2,8 @@
 
 Anonymous, consent-gated marketplace for kink-aware professional services.
 
+**Product + engineering index:** [SPEC.md](./SPEC.md) (points to migrations, `src/lib/*`, and design system).
+
 ## Design system
 
 Run the app and open `/design-system` for the full token and component reference (matches the NICHE build spec).

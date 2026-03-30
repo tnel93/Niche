@@ -7,7 +7,7 @@
  */
 
 import { useState } from "react";
-import { TRUST_LADDER_UI_STAGES } from "@/lib/connection-stages";
+import { TRUST_LADDER_UI } from "@/lib/connection-stages";
 import { T } from "./tokens";
 
 function Section({
@@ -1225,7 +1225,7 @@ export default function DesignSystemShowcase() {
               alignItems: "center",
             }}
           >
-            {TRUST_LADDER_UI_STAGES.map(({ stage, emoji, label }, i) => (
+            {TRUST_LADDER_UI.map(({ stage, emoji, label }, i) => (
               <span
                 key={stage}
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
@@ -1246,7 +1246,7 @@ export default function DesignSystemShowcase() {
                 >
                   {emoji} {label}
                 </span>
-                {i < TRUST_LADDER_UI_STAGES.length - 1 ? (
+                {i < TRUST_LADDER_UI.length - 1 ? (
                   <span style={{ color: T.color.textMuted, fontSize: T.fontSize.sm }}>→</span>
                 ) : null}
               </span>
