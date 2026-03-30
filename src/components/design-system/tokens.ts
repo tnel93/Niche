@@ -1,0 +1,214 @@
+/**
+ * NICHE — design tokens (living spec).
+ * Mirrors the complete design system: colors, type, space, radius, shadow,
+ * motion, breakpoints, and z-index scale.
+ */
+
+export const tokens = {
+  color: {
+    bg: "#FFFBF7",
+    bgAlt: "#FFF5EC",
+    bgWarm: "#FEF0E4",
+    bgDark: "#1A1410",
+    surface: "#FFFFFF",
+    surfaceHover: "#FFF8F2",
+    border: "#F0E4D8",
+    borderLight: "#F5EDE5",
+    borderFocus: "#E8734A",
+    text: "#2D2016",
+    textSoft: "#6B5B4E",
+    textMuted: "#A89888",
+    textInverse: "#FFFBF7",
+    accent: "#E8734A",
+    accentHover: "#D4623B",
+    accentPressed: "#C05530",
+    accentSoft: "rgba(232,115,74,0.10)",
+    accentSofter: "rgba(232,115,74,0.05)",
+    accentGlow: "rgba(232,115,74,0.20)",
+    green: "#4CAF6E",
+    greenSoft: "rgba(76,175,110,0.12)",
+    red: "#E05252",
+    redSoft: "rgba(224,82,82,0.10)",
+    amber: "#D4A24C",
+    amberSoft: "rgba(212,162,76,0.12)",
+    purple: "#8B6CC1",
+    purpleSoft: "rgba(139,108,193,0.10)",
+    teal: "#3DAFA5",
+    tealSoft: "rgba(61,175,165,0.10)",
+    avatarGradients: [
+      ["#E8734A", "#FFB088"],
+      ["#8B6CC1", "#C4A8F0"],
+      ["#3DAFA5", "#7ED9D0"],
+      ["#D4A24C", "#F0D08C"],
+      ["#E06088", "#F0A0B8"],
+      ["#5B8FD4", "#98C0F0"],
+      ["#7BC464", "#B0E8A0"],
+      ["#D47850", "#F0B090"],
+    ] as const,
+  },
+  font: {
+    brand: "var(--font-fraunces), Georgia, serif",
+    heading: "var(--font-fraunces), Georgia, serif",
+    body: "var(--font-dm-sans), 'Helvetica Neue', sans-serif",
+    mono: "var(--font-jetbrains), 'Fira Code', monospace",
+  },
+  fontSize: {
+    xs: "11px",
+    sm: "12px",
+    base: "14px",
+    md: "15px",
+    lg: "17px",
+    xl: "20px",
+    "2xl": "24px",
+    "3xl": "32px",
+    "4xl": "40px",
+    "5xl": "52px",
+    hero: "clamp(36px, 5vw, 56px)",
+  },
+  fontWeight: {
+    regular: 400,
+    medium: 500,
+    semi: 600,
+    bold: 700,
+    heavy: 800,
+  },
+  lineHeight: {
+    tight: 1.1,
+    snug: 1.3,
+    normal: 1.5,
+    relaxed: 1.65,
+    loose: 1.8,
+  },
+  letterSpacing: {
+    tight: "-0.02em",
+    normal: "0",
+    wide: "0.02em",
+    wider: "0.06em",
+    widest: "0.12em",
+    caps: "0.10em",
+  },
+  space: {
+    0: "0",
+    1: "4px",
+    2: "8px",
+    3: "12px",
+    4: "16px",
+    5: "20px",
+    6: "24px",
+    8: "32px",
+    10: "40px",
+    12: "48px",
+    16: "64px",
+    20: "80px",
+    24: "96px",
+  },
+  radius: {
+    sm: "8px",
+    md: "12px",
+    lg: "16px",
+    xl: "20px",
+    "2xl": "24px",
+    "3xl": "28px",
+    full: "100px",
+    circle: "50%",
+  },
+  shadow: {
+    sm: "0 1px 3px rgba(45,32,22,0.04)",
+    md: "0 4px 12px rgba(45,32,22,0.06)",
+    lg: "0 8px 24px rgba(45,32,22,0.08)",
+    xl: "0 12px 40px rgba(45,32,22,0.12)",
+    glow: "0 4px 16px rgba(232,115,74,0.25)",
+    card: "0 2px 12px rgba(45,32,22,0.04)",
+    cardHover: "0 12px 40px rgba(232,115,74,0.10)",
+    modal: "0 24px 64px rgba(45,32,22,0.20)",
+    inner: "inset 0 1px 3px rgba(45,32,22,0.06)",
+  },
+  transition: {
+    fast: "all 0.15s ease",
+    base: "all 0.25s ease",
+    slow: "all 0.4s ease",
+    spring: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+  },
+  breakpoint: {
+    sm: "640px",
+    md: "768px",
+    lg: "1024px",
+    xl: "1200px",
+  },
+  z: {
+    base: 1,
+    card: 10,
+    sticky: 50,
+    modal: 100,
+    toast: 150,
+    tooltip: 200,
+  },
+} as const;
+
+export const T = tokens;
+
+/** Paste into global CSS — documents canonical CSS variables (subset). */
+export const nicheCssVariablesSnippet = `
+:root {
+  --bg: #FFFBF7;
+  --bg-alt: #FFF5EC;
+  --bg-warm: #FEF0E4;
+  --bg-dark: #1A1410;
+  --surface: #FFFFFF;
+  --surface-hover: #FFF8F2;
+  --border: #F0E4D8;
+  --border-light: #F5EDE5;
+  --border-focus: #E8734A;
+  --text: #2D2016;
+  --text-soft: #6B5B4E;
+  --text-muted: #A89888;
+  --text-inverse: #FFFBF7;
+  --accent: #E8734A;
+  --accent-hover: #D4623B;
+  --accent-pressed: #C05530;
+  --accent-soft: rgba(232,115,74,0.10);
+  --accent-softer: rgba(232,115,74,0.05);
+  --accent-glow: rgba(232,115,74,0.20);
+  --green: #4CAF6E;
+  --green-soft: rgba(76,175,110,0.12);
+  --red: #E05252;
+  --red-soft: rgba(224,82,82,0.10);
+  --amber: #D4A24C;
+  --amber-soft: rgba(212,162,76,0.12);
+  --purple: #8B6CC1;
+  --purple-soft: rgba(139,108,193,0.10);
+  --teal: #3DAFA5;
+  --teal-soft: rgba(61,175,165,0.10);
+  --font-brand: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 100px;
+  --shadow-sm: 0 1px 3px rgba(45,32,22,0.04);
+  --shadow-md: 0 4px 12px rgba(45,32,22,0.06);
+  --shadow-lg: 0 8px 24px rgba(45,32,22,0.08);
+  --shadow-glow: 0 4px 16px rgba(232,115,74,0.25);
+  --shadow-card: 0 2px 12px rgba(45,32,22,0.04);
+}
+`.trim();
+
+/** Reference Tailwind extension — app uses tailwind.config.ts; this string is for docs/copy-paste. */
+export const nicheTailwindConfigSnippet = `
+// tailwind.config — extend theme with Niche tokens
+colors: {
+  cream: { DEFAULT: '#FFFBF7', alt: '#FFF5EC', warm: '#FEF0E4' },
+  espresso: { DEFAULT: '#2D2016', soft: '#6B5B4E', muted: '#A89888' },
+  terra: { DEFAULT: '#E8734A', hover: '#D4623B', pressed: '#C05530',
+            soft: 'rgba(232,115,74,0.10)', glow: 'rgba(232,115,74,0.20)' },
+  verified: { DEFAULT: '#4CAF6E', soft: 'rgba(76,175,110,0.12)' },
+  danger: { DEFAULT: '#E05252', soft: 'rgba(224,82,82,0.10)' },
+  gold: { DEFAULT: '#D4A24C', soft: 'rgba(212,162,76,0.12)' },
+  iris: { DEFAULT: '#8B6CC1', soft: 'rgba(139,108,193,0.10)' },
+  mint: { DEFAULT: '#3DAFA5', soft: 'rgba(61,175,165,0.10)' },
+  dark: '#1A1410',
+}
+`.trim();
