@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #fffbf7;
+  --bg-alt: #fff5ec;
+  --bg-warm: #fef0e4;
+  --bg-dark: #1a1410;
+  --surface: #ffffff;
+  --surface-hover: #fff8f2;
+  --border: #f0e4d8;
+  --border-light: #f5ede5;
+  --border-focus: #e8734a;
+  --text: #2d2016;
+  --text-soft: #6b5b4e;
+  --text-muted: #a89888;
+  --text-inverse: #fffbf7;
+  --accent: #e8734a;
+  --accent-hover: #d4623b;
+  --accent-pressed: #c05530;
+  --accent-soft: rgba(232, 115, 74, 0.1);
+  --accent-softer: rgba(232, 115, 74, 0.05);
+  --accent-glow: rgba(232, 115, 74, 0.2);
+  --green: #4caf6e;
+  --green-soft: rgba(76, 175, 110, 0.12);
+  --red: #e05252;
+  --red-soft: rgba(224, 82, 82, 0.1);
+  --amber: #d4a24c;
+  --amber-soft: rgba(212, 162, 76, 0.12);
+  --purple: #8b6cc1;
+  --purple-soft: rgba(139, 108, 193, 0.1);
+  --teal: #3dafa5;
+  --teal-soft: rgba(61, 175, 165, 0.1);
+  --font-brand: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-dm-sans), "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-jetbrains), "Fira Code", monospace;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 100px;
+  --shadow-sm: 0 1px 3px rgba(45, 32, 22, 0.04);
+  --shadow-md: 0 4px 12px rgba(45, 32, 22, 0.06);
+  --shadow-glow: 0 4px 16px rgba(232, 115, 74, 0.25);
+  --shadow-card: 0 2px 12px rgba(45, 32, 22, 0.04);
+  --shadow-modal: 0 24px 64px rgba(45, 32, 22, 0.2);
+}
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  body {
+    @apply bg-cream text-espresso font-body antialiased;
+  }
+
+  ::selection {
+    @apply bg-terra text-white;
+  }
+}
